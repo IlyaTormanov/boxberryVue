@@ -48,7 +48,7 @@
         -ms-flex-align: center;
         align-items: center;
         box-sizing: border-box;
-        flex: 0 0 25%;
+        /*flex: 0 0 25%;*/
         -webkit-box-flex: 0;
         max-width:430px;
         &:focus-within{

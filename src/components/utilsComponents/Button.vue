@@ -4,7 +4,7 @@
             :disabled="disabled"
             :type="type"
 
-            :style="{background:disabled==='disabled'?'#ee6d8f':'#ED1651'}">{{text}}</button>
+            :style="{background:disabled==='disabled'?'#ee6d8f':background,width:fullWidth&&'100%'}">{{text}}</button>
 
     </div>
 </template>
@@ -13,11 +13,12 @@
     export default {
         name: "Button",
         props:{
+            background:String,
             onClick:Function,
             text:String,
             disabled:String,
             type:String,
-
+            fullWidth:Boolean
         }
     }
 </script>
@@ -25,7 +26,7 @@
 <style scoped>
     button {
         width:175px;
-        background: #ED1651;
+background: #ED1651;
         border-radius: 4px;
         font-family: Open Sans;
         font-style: normal;
