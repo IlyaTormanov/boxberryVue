@@ -1,7 +1,7 @@
 <template>
     <div id="container_fromList">
     <form id="travel">
-        <Input v-for="item in dataList" :placeholder="item.placeholder" :name="item.name"/>
+        <Input v-for="item in dataList" :placeholder="item.placeholder" :name="item.name" :mask="item.mask"/>
         <Checkbox v-for="item in checkboxBusiness"
                   v-model="check"
                   :value="check"
@@ -55,7 +55,8 @@
                     {
                         placeholder: "Ваш номер телефона*",
                         value: "",
-                        name: "phone"
+                        name: "phone",
+                        mask:"+7(999)999 999 99"
                     },
                     {
                         placeholder: "Адрес вашего сайта*",
