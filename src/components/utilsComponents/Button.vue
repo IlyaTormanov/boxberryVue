@@ -1,6 +1,10 @@
 <template>
     <div>
-    <button @click="onClick" :disabled="disabled" :style="{background:disabled==='disabled'?'#ee6d8f':'#ED1651'}">{{text}}</button>
+    <button @click="onClick"
+            :disabled="disabled"
+            :type="type"
+
+            :style="{background:disabled==='disabled'?'#ee6d8f':'#ED1651'}">{{text}}</button>
 
     </div>
 </template>
@@ -11,7 +15,8 @@
         props:{
             onClick:Function,
             text:String,
-            disabled:String
+            disabled:String,
+            type:String,
 
         }
     }
@@ -19,6 +24,7 @@
 
 <style scoped>
     button {
+        width:175px;
         background: #ED1651;
         border-radius: 4px;
         font-family: Open Sans;

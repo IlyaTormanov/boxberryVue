@@ -1,7 +1,11 @@
 <template>
     <div class="field-checkbox">
-        <input class="field-checkbox__input" type="checkbox" name="list_services" id="000001327" value="foo"  :checked="checked" v-on="$listeners">
-        <label class="field-checkbox__label" for="000001327"> Голосовое оповещение получателя о поступлении посылки&nbsp;<span>+25₽</span></label>
+        <input class="field-checkbox__input"
+               type="checkbox"
+               :name="name"
+               :id="id"
+               :value="value"   @input="changeChecked"/>
+        <label class="field-checkbox__label"  :for="id">{{label}}<span>{{unique}}</span></label>
     </div>
 </template>
 
@@ -9,7 +13,17 @@
     export default {
         name: "Checkbox",
         props:{
-            checked:Boolean
+            value:Boolean,
+            label:String||Node,
+            name:String,
+            id:String,
+            unique:String||Node
+        },
+        methods:{
+            changeChecked(el){
+                this.$emit('input',el.target.checked)
+                alert(el.target.checked)
+            }
         }
     }
 </script>
@@ -54,7 +68,7 @@
         font-family: "Open Sans", sans-serif;
         span{
             color: #ed1651;
-            padding: 0;
+            padding: 0 5px;
             margin: 0;
             -webkit-margin-before: 0;
             -webkit-margin-after: 0;

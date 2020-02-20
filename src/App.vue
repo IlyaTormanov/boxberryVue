@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <CalculatorLastStep/>
     <Calculator/>
     <FormList/>
   </div>
@@ -11,9 +12,11 @@
 import BoxDropdown from "@/components/BoxDropdown";
 import Calculator from "@/components/Calculator";
 import FormList from "@/components/FormList";
+import CalculatorLastStep from "./components/CalculatorLastStep";
 export default {
   name: 'App',
   components: {
+    CalculatorLastStep,
     FormList,
     Calculator,
     BoxDropdown
@@ -23,6 +26,11 @@ export default {
 </script>
 
 <style>
+  .error{
+    text-align: start !important;
+    width:100% !important;
+    padding:10px 0 !important;
+  }
   *{
     margin:0;
     padding:0;
@@ -42,5 +50,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display:grid;
+  grid-row-gap:50px;
+  justify-content: center;
+  align-content:center;
+  align-items: center;
 }
 </style>

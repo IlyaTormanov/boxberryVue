@@ -1,9 +1,9 @@
 <template>
 
-    <form id="travel">
-       <Input v-for="item in dataList" :placeholder="item.placeholder" />
-        <Checkbox v-for="check in checkedList" :checked="check.checked" v-model="currentCheck"/>
-
+    <form id="travel" >
+       <Input v-for="item in dataList" :placeholder="item.placeholder" :name="item.name" />
+        <Checkbox v-for="item in checkboxBusiness" v-model="check" :value="check" :name="item.name" :id="item.name"/>
+        <Button type="submit"  text="Отправить"/>
     </form>
 
 </template>
@@ -11,21 +11,25 @@
 <script>
     import Input from "@/components/utilsComponents/Input";
     import Checkbox from "@/components/utilsComponents/Checkbox";
-
+    import Button from "./utilsComponents/Button";
+    import $ from 'jquery';
+    import validate from 'jquery-validation'
     export default {
         name: "FormList",
-        components: {Checkbox, Input},
+        components: {Button, Checkbox, Input},
+
         data(){
             return{
-                currentCheck:[],
-                checkedList:[
+
+               check:[],
+                checkboxBusiness:[
                     {
-                        name:"Получение рассылки",
-                        checked:false
+                        name:"Voice",
+                        value:"voice"
                     },
                     {
-                        name:"Согласие на получение персональных данных",
-                        checked:false
+                        name:"Message",
+                        value:'message'
                     }
                 ],
                 dataList:[
@@ -63,23 +67,50 @@
                 ]
             }
         },
-        methods:{
-                onSend:function(){
-                    $("#travel").validate({
-                        rules:{
-                              name:'email',
-                                email:{
-                                  required:true,
-                                    email:true
-                                }
-                        }
-                    }
-                    )
-                }
-        }
+
+       mounted() {
+           $("#travel").validate({
+               rules:{
+
+                   email:{
+                       required:true,
+                       email:true
+                   },
+                   city:{
+                       required:true
+                   },
+                   fio:{
+                       required:true
+                   },
+                   address:{
+                       required:true
+                   },
+                   phone:{
+                       required:true
+                   },
+                   business:{
+                       required:true
+                   },
+                   Voice:{
+                       required:true
+                   },
+                   Message:{
+                       required:true
+                   }
+
+               },
+               messages:{
+                   Voice:{
+
+                   }
+               }
+           })
+       }
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    #travel{
+        width:600px;
+    }
 </style>

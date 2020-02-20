@@ -11,9 +11,12 @@
     "core-js": "^3.6.4",
     "jquery": "^3.4.1",
     "jquery-validation": "^1.19.1",
+    "jquery.maskedinput": "^1.4.1",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
-    "vue": "^2.6.11"
+    "v-mask": "^2.0.2",
+    "vue": "^2.6.11",
+    "vue-inputmask": "^0.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",

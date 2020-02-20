@@ -2,31 +2,22 @@
         <div id="calculator">
 
             <BoxDropdown v-if="onShow"/>
-            <div id="calculator_head">
-                <div id="calculator_title">
-                    Расчет и отправка посылок для частных клиентов
-                </div>
-                <div class="calculator_steps">
-                    <StepPow/>
-                    <StepPow/>
-                    <StepPow/>
-                </div>
-            </div>
+            <CalculatorHead />
             <div class="calculator__item-content">
                 <div>
 
-                <Input placeholder="Город отправитель" @input="cityValue" @focus="focus=true" @blur="focus=false" />
+                <Input placeholder="Город отправитель"  @input="cityValue" @focus="focus=true" @blur="focus=false" :icon="true" />
                 <PopUpInput :cityList="currentFrom" v-if="currentFrom.length&&focus" />
                 </div>
-                    <Input placeholder="Город получатель"  />
-                        <Input placeholder="Выберите упаковку"  />
-                            <Input placeholder="Оценочная стоимость" />
+                    <Input placeholder="Город получатель"  :icon="true"/>
+                        <Input placeholder="Выберите упаковку"  :icon="true" @click="onShow=!onShow"/>
+                            <Input placeholder="Оценочная стоимость" :icon="true"/>
             </div>
             <div class="calculator-options calculator-options_service">
                 <p>Дополнительные услуги</p>
                 <div>
-                    <Checkbox/>
-                    <Checkbox/>
+                    <Checkbox label="Голосовое оповещение отправителя о выдаче посылки" unique="+25₽"/>
+                    <Checkbox label="Голосовое оповещение получателя о поступлении посылки" unique="+25₽"/>
                 </div>
             </div>
             <div class="calculator_nav">
@@ -50,12 +41,19 @@
     import Button from "@/components/utilsComponents/Button";
     import BoxDropdown from "@/components/BoxDropdown";
     import PopUpInput from "@/components/utilsComponents/PopUpInput";
+    import CalculatorHead from "./utilsComponents/CalculatorHead";
 
     export default {
         name: "Calculator",
-        components: {PopUpInput, BoxDropdown, Button, Checkbox, Input, StepPow},
+        components: {CalculatorHead, PopUpInput, BoxDropdown, Button, Checkbox, Input, StepPow},
+        provide(){
+            return{
+                activeList:[1,2,3]
+            }
+        },
         data(){
             return{
+
                 focus:false,
                 currentFrom:[],
                 currentTo:[],
@@ -90,67 +88,7 @@
         background: #f2f1ef;
         padding: 50px 50px 170px;
 
-        #calculator_head{
-            position: relative;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-orient: horizontal;
-            -webkit-box-direction: normal;
-            -ms-flex-flow: row nowrap;
-            flex-flow: row nowrap;
-            -webkit-box-align: start;
-            -ms-flex-align: start;
-            align-items: flex-start;
-            -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-            justify-content: space-between;
-            color: #3f3f3f;
-            font-style: normal;
-            font-variant-ligatures: normal;
-            font-variant-caps: normal;
-            font-variant-numeric: normal;
-            font-variant-east-asian: normal;
-            font-weight: 700;
-            font-stretch: normal;
-            font-size: 40px;
-            line-height: 44px;
-            font-family: "Open Sans", sans-serif;
-            margin: 0 0 44px;
-            .calculator_title{
 
-
-                word-break: break-word;
-                -webkit-box-flex: 0;
-                -ms-flex: 0 0 66.66667%;
-                flex: 0 0 66.66667%;
-                max-width: 66.66667%;
-                opacity: 0;
-                visibility: hidden;
-                -webkit-transition: .3s all cubic-bezier(.4,0,.6,1);
-                transition: .3s all cubic-bezier(.4,0,.6,1);
-                position: absolute;
-                left: 0;
-                right: 0;
-            }
-            .calculator_steps{
-                display:flex;
-                justify-content: space-between;
-                ::before{
-                    top: 50%;
-                    position: absolute;
-                    display: block;
-                    content: "";
-                    left: 26px;
-                    right: 25px;
-                    -webkit-transform: translate(0,-50%);
-                    transform: translate(0,-50%);
-                    height: 3px;
-                    background: #fff;
-
-                }
-            }
-        }
         .calculator__item-content{
             display: flex;
         }

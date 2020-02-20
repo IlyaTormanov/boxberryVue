@@ -1,12 +1,15 @@
 <template>
     <div class="step">
-        1
+        {{value}}
     </div>
 </template>
 
 <script>
     export default {
-        name: "StepPow"
+        name: "StepPow",
+        props:{
+            value:String||Number
+        }
     }
 </script>
 
