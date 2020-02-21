@@ -11,7 +11,7 @@
         props:{
             name:String,
             size:String,
-            onClick:Function
+            onClick:Function,
         }
     }
 </script>

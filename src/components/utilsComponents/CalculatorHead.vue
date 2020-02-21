@@ -72,19 +72,7 @@
         .calculator_steps{
             display:flex;
             justify-content: space-between;
-            ::before{
-                top: 50%;
-                position: absolute;
-                display: block;
-                content: "";
-                left: 26px;
-                right: 25px;
-                -webkit-transform: translate(0,-50%);
-                transform: translate(0,-50%);
-                height: 3px;
-                background: #fff;
 
-            }
         }
     }
 </style>

@@ -7,19 +7,18 @@
                 <p class="title">Отправитель</p>
                 <p class="title">Получатель</p>
                 <Input placeholder="Отделение отправителя" name="place"/>
-                <Input placeholder="ФИО отправителя" name="fio"/>
-
-                <Input mask="+7(999) 999 999 99" placeholder="Телефон отправителя" name="phone"/>
-                <Input placeholder="Эл.Почта" name="email"/>
-
-                <Input placeholder="Город,Улица,Строение,кв/офис" name="receiver"/>
+                <Input placeholder="Отделение получателя " name="place_receiver"/>
+                <Input placeholder="ФИО отправителя" name="receiver"/>
                 <Input placeholder="ФИО получателя" name="receiver_fio"/>
+
+
+
                 <div class="double_blocks">
-                    <Input mask="+7(999) 999 999 99" placeholder="Телефон отправителя" name="phone"/>
+                    <Input mask="+7(999) 999 999 99" placeholder="Телефон отправителя" name="phone_receiver"/>
                     <Input placeholder="email" name="email"/>
                 </div>
                 <div class="double_blocks">
-                    <Input placeholder="Телефон" name="receiver_phone"/>
+                    <Input placeholder="Телефон получателя" name="receiver_phone"/>
                     <Input placeholder="Эл.Почта" name="receiver_email"/>
                 </div>
 
@@ -28,13 +27,19 @@
             <div id="password_panel">
                 <p class="title">Паспортные данные отправителя</p>
                 <div class="password_data">
-                    <Input placeholder="Серия" name="password_part" mask="XXXX"/>
-                    <Input placeholder="Номер" name="password_num" mask="XXXXXX"/>
+                    <Input placeholder="Серия" name="password_part" mask="####"/>
+                    <Input placeholder="Номер" name="password_num" mask="######"/>
                 </div>
             </div>
-            <Checkbox label="Даю своё согласие на обработку " name="believer" unique="персональных данных"/>
+            <div class="submitBar"><Checkbox label="Даю своё согласие на обработку "
+                           :name="personalDataChecked.name"
+                           v-model="personalDataChecked.value"
+                           :value="personalDataChecked.value"
+                           :id="personalDataChecked.name"
 
-            <Button type="submit" text="Отправить"/>
+                           unique="персональных данных"/>
+
+                <Button type="submit" text="Отправить" :on-click="()=>{}"/></div>
 
         </form>
 
@@ -52,6 +57,14 @@
     export default {
         name: "CalculatorLastStep",
         components: {Checkbox, Button, Input, CalculatorHead},
+        data(){
+            return{
+                personalDataChecked:{
+                    name:"believer",
+                    value:false
+                }
+            }
+        },
         mounted() {
             $("#content").validate({
                 rules: {
@@ -67,17 +80,24 @@
                         email: true,
                         required: true
                     },
-                    fio: {
+                    phone_receiver:{
+                        required:true,
+                        minLength:12,
+                    },
+                    place_receiver: {
                         required: true
                     },
                     password_part: {
-                        required: true
+                        required: true,
+                        minLength:4
                     },
                     phone: {
-                        required: true
+                        required: true,
+                        minLength:12,
                     },
                     password_num: {
-                        required: true
+                        required: true,
+                        minLength:6
                     },
                     receiver: {
                         required: true
@@ -86,10 +106,12 @@
                         required: true
                     },
                     receiver_email: {
-                        required: true
+                        required: true,
+                        email:true
                     },
                     receiver_phone: {
-                        required: true
+                        required: true,
+                        minLength:12,
                     },
                     believer: {
                         required: true
@@ -144,7 +166,21 @@
             /*grid-template-columns: 50% 50%;*/
             /*justify-content: space-between;*/
             box-sizing: border-box;
-
+            .submitBar{
+                display:flex;
+                justify-content: space-between;
+                width:100% !important;
+                align-items:center;
+            }
+            #password_panel {
+                .password_data {
+                    display: grid;
+                    grid-template-columns: 35% 55%;
+                    grid-column-gap: 20px;
+                    padding-top: 20px;
+                    width:455px
+                }
+            }
             #left {
                 .double_blocks {
                     display: flex;
@@ -163,14 +199,9 @@
                 padding: 30px 0;
                 box-sizing: border-box;
 
-                #password_panel {
-                    .password_data {
-                        display: grid;
-                        grid-template-columns: 20% 75%;
-                        grid-column-gap: 20px;
-                        padding-top: 20px;
-                    }
-                }
+
+
+
             }
 
             #right {

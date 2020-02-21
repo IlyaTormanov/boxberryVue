@@ -3,7 +3,7 @@
         <div class="nav_menu"><span class="nav_title_bolder_text">Выберите упаковку</span><span>X</span></div>
         <div class="package_content">
             <div class="choiced_scroll_menu">
-                <IconItem v-for="item in box" :name="item.name" :size="item.size" v-bind:key="item.id"
+                <IconItem v-for="item in boxex" :name="item.name" :size="item.size" v-bind:key="item.id"
                           :on-click="()=>setBoxImage(item.path)"/>
 
             </div>
@@ -26,64 +26,19 @@
 <script>
     import Vector from '../assets/S.png'
     import IconItem from "@/components/utilsComponents/IconItem";
-    import iconL from '../assets/L.png'
-    import iconS from '../assets/S.png'
-    import iconM from '../assets/M.png'
-    import iconXS from '../assets/XS.png'
+
     import Button from "@/components/utilsComponents/Button";
 
     export default {
-
+        inject:['boxList','selectedBoxes'],
         name: "BoxDropdown",
         components: {Button, IconItem},
         data() {
             return {
+                boxex:this.boxList,
                 state: true,
                 current: Vector,
-                box: [
-                    {
-                        id: 0,
-                        name: "Короб L",
-                        size: '(40x40x30см)',
-                        path: iconL
-                    },
-                    {
-                        id: 1,
-                        name: "Короб L",
-                        size: '(40x40x30см)',
-                        path: iconS
-                    },
-                    {
-                        id: 2,
-                        name: "Короб L",
-                        size: '(40x40x30см)',
-                        path: iconM
-                    },
-                    {
-                        id: 3,
-                        name: "Короб L",
-                        size: '(40x40x30см)',
-                        path: iconXS
-                    },
-                    {
-                        id: 4,
-                        name: "Короб L",
-                        size: '(40x40x30см)',
-                        path: iconM
-                    },
-                    {
-                        id: 5,
-                        name: "Короб L",
-                        size: '(40x40x30см)',
-                        path: iconS
-                    },
-                    {
-                        id: 6,
-                        name: "Короб L",
-                        size: '(40x40x30см)',
-                        path: iconL
-                    }
-                ]
+
             }
         },
         methods: {

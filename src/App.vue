@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <CalculatorLastStep/>
     <Calculator/>
+    <StaticMaket/>
+    <CalculatorLastStep/>
     <FormList/>
+
   </div>
 </template>
 
@@ -13,9 +15,13 @@ import BoxDropdown from "@/components/BoxDropdown";
 import Calculator from "@/components/Calculator";
 import FormList from "@/components/FormList";
 import CalculatorLastStep from "./components/CalculatorLastStep";
+import StaticMaket from "@/components/StaticMaket";
+import PopUpInput from "@/components/utilsComponents/PopUpInput";
 export default {
   name: 'App',
   components: {
+    PopUpInput,
+    StaticMaket,
     CalculatorLastStep,
     FormList,
     Calculator,
@@ -29,8 +35,9 @@ export default {
   .error{
     text-align: start !important;
     width:100% !important;
-    padding:10px 0 !important;
+    padding:10px;
   }
+
   *{
     margin:0;
     padding:0;

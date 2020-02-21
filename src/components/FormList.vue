@@ -1,21 +1,21 @@
 <template>
     <div id="container_fromList">
     <form id="travel">
-        <Input v-for="item in dataList" :placeholder="item.placeholder" :name="item.name" :mask="item.mask"/>
+        <Input v-for="item in dataList" :placeholder="item.placeholder" :name="item.name" :mask="item.mask" :icon="true" />
         <Checkbox v-for="item in checkboxBusiness"
-                  v-model="check"
-                  :value="check"
+                  v-model="item.value"
+                  :value="item.value"
                   :name="item.name"
                   :id="item.name"
-                  :label="item.value" />
+                  :label="item.placeholder" />
 
-        <Button type="submit" text="Отправить" background="#a6ce39" full-width="true"/>
+        <Button type="submit" text="Отправить" background="#a6ce39" :full-width="true" :on-click="()=>{}"/>
     </form>
         <div id="stepBlock">
-            <StepPow value="1" label="Введите корректный email" inherit="true"/>
-            <StepPow value="2" label="Заполните необходимые поля" inherit="true"/>
-            <StepPow value="3" label="Оставьте нам свой номер телефона" inherit="true"/>
-            <StepPow value="4" label="И мы Вам перезвоним!" inherit="true"/>
+            <StepPow value="1" label="Введите корректный email" :inherit="true"/>
+            <StepPow value="2" label="Заполните необходимые поля" :inherit="true"/>
+            <StepPow value="3" label="Оставьте нам свой номер телефона" :inherit="true"/>
+            <StepPow value="4" label="И мы Вам перезвоним!" :inherit="true"/>
         </div>
     </div>
 </template>
@@ -35,15 +35,17 @@
         data() {
             return {
 
-                check: [],
+
                 checkboxBusiness: [
                     {
                         name: "Voice",
-                        value: "Согласие на отслеживание сообщений"
+                        placeholder: "Согласие на отслеживание сообщений",
+                        value:false
                     },
                     {
                         name: "Message",
-                        value: 'Согласие на отслеживание звонков'
+                        placeholder: 'Согласие на отслеживание звонков',
+                        value:false
                     }
                 ],
                 dataList: [
@@ -56,7 +58,8 @@
                         placeholder: "Ваш номер телефона*",
                         value: "",
                         name: "phone",
-                        mask:"+7(999)999 999 99"
+                        mask:"+7(999)999 999 99",
+
                     },
                     {
                         placeholder: "Адрес вашего сайта*",
@@ -101,7 +104,8 @@
                         required: true
                     },
                     phone: {
-                        required: true
+                        required: true,
+                        minLength:12
                     },
                     business: {
                         required: true
@@ -114,9 +118,7 @@
                     }
 
                 },
-                messages: {
-                    Voice: {}
-                }
+
             })
         }
     }
